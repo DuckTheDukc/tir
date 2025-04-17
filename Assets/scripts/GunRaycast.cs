@@ -14,6 +14,11 @@ public class GunRaycast : MonoBehaviour
 
     private float nextTimeToFire = 0f;   // Таймер для скорострельности
 
+
+    void Awake()
+    {
+       fpsCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
     void Update()
     {
         // Если зажата ЛКМ и прошло достаточно времени
