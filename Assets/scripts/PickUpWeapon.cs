@@ -24,6 +24,10 @@ public class PickUpWeapon : MonoBehaviour
 
     void PickUp(Transform player)
     {
+        if (player.GetComponent<FPSController>().weaponDropPrefab == null)
+        {
+            
+       
         // 1. Создаем оружие в руках игрока
         GameObject newWeapon = Instantiate(
             weaponPrefab,
@@ -39,6 +43,7 @@ public class PickUpWeapon : MonoBehaviour
 
         // 3. Удаляем оружие с земли
         this.gameObject.SetActive(false);
+        }
     }
 
 
