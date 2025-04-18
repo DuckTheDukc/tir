@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  range: 100
+  range: 1000
   fireRate: 15
   fpsCam: {fileID: 0}
   gunShotEffectPrefab: {fileID: 124018, guid: 1f389bb139e76154582cf3c5e4f9214b, type: 3}
@@ -56,6 +56,9 @@ MonoBehaviour:
   recoilDuration: 0.1
   cameraShakeIntensity: 0.1
   spreadAngle: 1
+  rotationRecoil: 2
+  sideRotationRecoil: 1
+  rotationReturnSpeed: 8
 --- !u!1001 &8064880834736994751
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -83,8 +83,16 @@ public class GunRaycast : MonoBehaviour
         // 4. Выстрел
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, shootDirection, out hit, range))
-        {
+        {   
             GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+
+            Target target = hit.collider.GetComponent<Target>();
+            if (target != null)
+            {
+                target.Hit(); // Вызываем метод Hit у конкретной мишени
+                Debug.Log("Попадание в мишень: " + hit.collider.name);
+            }
+
             Destroy(impact, 2f);
         }
     }
