@@ -10,6 +10,9 @@ public class GunRaycast : MonoBehaviour
     public Camera fpsCam;
     public GameObject gunShotEffectPrefab;
     public GameObject impactEffect;
+    public AudioClip gunshotSound;
+    [Range(0, 1)] public float gunshotVolume = 0.5f;
+    private AudioSource audioSource;
 
     [Header("Отдача")]
     public float recoilForce = 0.1f;    // Сила отдачи (смещение оружия)
@@ -33,6 +36,7 @@ public class GunRaycast : MonoBehaviour
     {
         fpsCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         weaponTransform = transform;
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     void Update()
@@ -61,6 +65,10 @@ public class GunRaycast : MonoBehaviour
 
     void Shoot()
     {
+        if (gunshotSound != null)
+        {
+            audioSource.PlayOneShot(gunshotSound, gunshotVolume);
+        }
         // 1. Эффект выстрела
         GameObject effect = Instantiate(gunShotEffectPrefab, weaponTransform.position, weaponTransform.rotation);
         Destroy(effect, 2f);

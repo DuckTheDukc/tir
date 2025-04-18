@@ -51,11 +51,16 @@ MonoBehaviour:
   fpsCam: {fileID: 0}
   gunShotEffectPrefab: {fileID: 153266, guid: 39b2a3d1ecfa5614b97e75a9b5561f21, type: 3}
   impactEffect: {fileID: 151174, guid: e3c9439885f011549a6460a1f4da82dc, type: 3}
+  gunshotSound: {fileID: 8300000, guid: b3c011dabc7451b40a4895a0d06c1c6d, type: 3}
+  gunshotVolume: 0.7
   recoilForce: 0.1
   recoilUpward: 0.05
   recoilDuration: 0.1
   cameraShakeIntensity: 0.1
   spreadAngle: 1
+  rotationRecoil: 2
+  sideRotationRecoil: 1
+  rotationReturnSpeed: 8
 --- !u!1001 &7778990583422465039
 PrefabInstance:
   m_ObjectHideFlags: 0
