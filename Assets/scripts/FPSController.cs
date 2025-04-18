@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -13,6 +14,8 @@ public class FPSController : MonoBehaviour
     public GameObject weaponHolderObj;
     private CharacterController controller;
     private float xRotation = 0f;
+    public int points = 0;
+    public TextMeshProUGUI scoreText;
 
     void Start()
     {
@@ -62,5 +65,18 @@ public class FPSController : MonoBehaviour
         }
         weaponDropPrefab= null;
         Destroy(weaponHolderObj.transform.GetChild(0).gameObject);
+    }
+
+    public void AddPoint()
+    {
+        points += 1;
+    }
+    public void resetScore()
+    {
+        points = 0;
+    }
+    public void UpdateScoreUI()
+    {
+        scoreText.text = $"Очки: {points}";
     }
 }

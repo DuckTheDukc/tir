@@ -9,16 +9,26 @@
         private AudioSource audioSource;
         public AudioClip fallSound;
         public AudioClip resetSound;
-        [Range(0f, 1f)] public float soundVolume = 0.8f;
+        private FPSController fpsController;
+        private Timer timer;
 
+    [Range(0f, 1f)] public float soundVolume = 0.8f;
         
-        void Start()
+       
+
+
+    void Start()
         {
-            animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
             if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
-        }
+
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        fpsController = playerObj.GetComponent<FPSController>();
+        GameObject timerObj = GameObject.FindWithTag("Timer");
+        timer = timerObj.GetComponent<Timer>();
+    }
 
         public void Hit()
         {
@@ -29,7 +39,16 @@
             if (fallSound != null)
                 audioSource.PlayOneShot(fallSound, soundVolume * 0.5f);
 
-            StartCoroutine(ResetTargetAfterDelay(10f));
+            if(timer.isActive == true)
+        {
+            fpsController.AddPoint();
+            fpsController.UpdateScoreUI();
+        }   
+        
+        
+           
+
+            StartCoroutine(ResetTargetAfterDelay(4f));
             // Отключаем коллайдер, чтоб    льзя было попасть дважды
             GetComponent<Collider>().enabled = false;
 
@@ -49,9 +68,10 @@
             animator.SetTrigger("Reset");
 
             if (resetSound != null)
+                
                 audioSource.PlayOneShot(resetSound, soundVolume * 0.7f);
 
-            Debug.Log("АНИМЕЕЕ");
+          
             // Включаем коллайдер
             GetComponent<Collider>().enabled = true;
 
